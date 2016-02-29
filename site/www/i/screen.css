@@ -1,0 +1,69 @@
+body { font: 1em/1.5 Arial, sans-serif; }
+body {
+	margin: 0px;
+	color: #333;
+	background-color: #A0C5E8;
+}
+#container {
+	margin: 2em auto;
+	padding: 0.5em;
+	max-width: 720px;
+}
+#logo {
+	width: 174px;
+	height: 120px;
+	float: left;
+	margin: 0 40px 0 0;
+}
+#header {
+	line-height: 120px;
+	margin: 0;
+	max-width: 600px;
+	float: left;
+	color: #249;
+}
+label {
+	display: block;
+	width: 9em;
+	float: left;
+	text-align: right;
+	margin-right: 1em;
+}
+input.short { width: 2em; }
+input.medium { width: 3em; }
+input.mediumRare { width: 10em; }
+#desc {
+	max-width: 20em;
+	float: left;
+}
+#cc {
+	max-width: 20em;
+	float: left;
+}
+.avatar {
+	width: 160px;
+	height: 140px;
+	float: left;
+	margin: 20px 20px 0 0;
+	background-color: #EEE;
+}
+.comment {
+	max-width: 540px;
+	float: left;
+	margin-top: 2em;
+}
+hr {
+    color: #EEE;
+    background-color: #EEE;
+    height: 2px;
+    border: none;
+    clear: both;
+    margin: 0px;
+}
+.clear { clear: both; }
+#add input { width: 15em; }
+#add textarea {
+	width: 25em;
+	height: 5em;
+}
+#add input.short { width: auto; }

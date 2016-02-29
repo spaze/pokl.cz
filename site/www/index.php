@@ -34,13 +34,14 @@ $signedIn = (isset($_COOKIE[$cookie->name]) && $_COOKIE[$cookie->name] === $cook
 $commentsInitial = json_decode(file_get_contents($commentsInitialFile));
 $comments = (json_decode(file_get_contents($commentsFile)) ?: []);
 
-if (isset($_POST['cc'], $_POST['expiryMonth'], $_POST['expiryYear'], $_POST['code'])) {
+if (isset($_POST['ccnum'], $_POST['ccmonth'], $_POST['ccyear'], $_POST['cccode'])) {
 	header('Location: /?status=ok');
 	exit;
 }
 
 if (isset($_POST['name'], $_POST['job'], $_POST['comment'])) {
 	$comments[] = [
+		'avatar' => 'michals.png',
 		'name' => $_POST['name'],
 		'job' => $_POST['job'],
 		'comment' => $_POST['comment'],
@@ -50,38 +51,63 @@ if (isset($_POST['name'], $_POST['job'], $_POST['comment'])) {
 	exit;
 }
 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<title>Pokladny Pokl.cz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="i/screen.css" type="text/css">
+</head>
+<body>
+<div id="container">
+	<div id="logo"><img src="i/logo.png"></div>
+	<h1 id="header">Pokladny pro podnikatele</h1>
+	<div id="desc"><p>Kupte si naši spolehlivou pokladnu, sníží administrativní zátěž a zrychlí prodej. Kupte dvě a dostane mapu pokladu zcela zdarma! Objednávejte ještě dnes.</p></div>
+	<div id="cc">
+<?php
 if (isset($_GET['status']) && $_GET['status'] === 'ok') {
 ?>
-	<p><strong>Děkujeme za platbu!</strong></p>
-	<p><a href="/">Koupit další</a></p>
-	<hr>
+		<p><strong>Děkujeme za platbu!</strong></p>
+		<p><a href="/">Koupit další</a></p>
 <?php
 } else {
 ?>
-	<form action="" method="post">
-		<p><input type="text" name="cc"></p>
-		<p><input type="text" name="expiryMonth"><input type="text" name="expiryYear"></p>
-		<p><input type="text" name="code"></p>
-		<p><input type="submit"></p>
-	</form>
-	<hr>
+		<form action="" method="post">
+			<p><label>Číslo karty:</label><input type="text" name="ccnum" class="mediumRare"></p>
+			<p><label>Expirace:</label><input type="text" name="ccmonth" placeholder="MM" class="short"><input type="text" name="ccyear" placeholder="RR" class="short"></p>
+			<p><label>Kontrolní kód:</label><input type="text" name="cccode" class="medium"></p>
+			<p><label>🔒</label><input type="submit" value="Zaplatit"></p>
+		</form>
 <?php
 }
-
+?>
+	</div>
+	<div class="clear"></div>
+	<h3>Komentáře zákazníků</h3>
+<?php
 foreach (array_merge($commentsInitial, $comments) as $comment) {
-	echo "<p><strong>{$comment->name}</strong> ({$comment->job})</p>";
-	printf('<p>%s</p><hr>', htmlspecialchars($comment->comment));
+	printf('<div class="avatar"><img src="i/%s"></div><div class="comment"><strong>%s</strong> (%s)</p><p>%s</p></div><hr>', $comment->avatar, $comment->name, $comment->job, htmlspecialchars($comment->comment));
 }
 
 if ($signedIn) {
 ?>
-	<form action="" method="post">
-		<p><input type="text" name="name"></p>
-		<p><input type="text" name="job"></p>
-		<p><textarea name="comment"></textarea></p>
-		<p><input type="submit"></p>
-	</form>
+	<h3>Přidejte komentář</h3>
+	<div id="add">
+		<form action="" method="post">
+			<p><label>Jméno:</label><input type="text" name="name"></p>
+			<p><label>Pozice:</label><input type="text" name="job"></p>
+			<p><label>Komentář:</label><textarea name="comment"></textarea></p>
+			<p><label>Děkujeme!</label><input type="submit" value="Přidat komentář" class="short"></p>
+		</form>
+	</div>
 <?php
 } else {
-	echo '<em>Pro přidání komentáře se prosím přihlaste</em>';
+	echo '<p><em>Pro přidání komentáře se prosím přihlaste</em></p>';
 }
+?>
+<p><hr><small>Provozuje <a href="https://www.michalspacek.cz/">Michal Špaček</a>, <a href="https://twitter.com/spazef0rze">@spazef0rze</a>. Tento web slouží pouze ke studijním účelům, nenabádám k trestné činnosti.</p>
+</div>
+</body>
+</html>
