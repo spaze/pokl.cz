@@ -88,7 +88,12 @@ if (isset($_GET['status']) && $_GET['status'] === 'ok') {
 	<h3>Komentáře zákazníků</h3>
 <?php
 foreach (array_merge($commentsInitial, $comments) as $comment) {
-	printf('<div class="avatar"><img src="i/%s"></div><div class="comment"><strong>%s</strong> (%s)</p><p>%s</p></div><hr>', $comment->avatar, $comment->name, $comment->job, htmlspecialchars($comment->comment));
+	printf('<div class="avatar"><img src="i/%s"></div><div class="comment"><strong>%s</strong> (%s)</p><p>%s</p></div><hr>',
+		$comment->avatar,
+		$comment->name,
+		$comment->job,
+		htmlspecialchars($comment->comment)
+	);
 }
 
 if ($signedIn) {
