@@ -112,7 +112,7 @@ if ($signedIn) {
 	echo '<p><em>Pro přidání komentáře se prosím přihlaste</em></p>';
 }
 ?>
-<p><hr><small>Provozuje <a href="https://www.michalspacek.cz/">Michal Špaček</a>, <a href="https://twitter.com/spazef0rze">@spazef0rze</a>. Tento web slouží pouze ke studijním účelům, nenabádám k trestné činnosti.</p>
+<p><hr><small>Provozuje <a href="https://www.michalspacek.cz/">Michal Špaček</a>, <a href="https://twitter.com/spazef0rze">@spazef0rze</a>. Tento web slouží pouze ke studijním účelům, nenabádám k trestné činnosti.</small></p>
 </div>
 </body>
 </html>
