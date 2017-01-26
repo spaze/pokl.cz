@@ -24,12 +24,15 @@ if (preg_match('/^(?:([^.]+\.))?([^.]+\.[^.]+)\z/', $_SERVER['HTTP_HOST'], $m)) 
 	}
 }
 
+require_once __DIR__ . '/language.php';
+
 $dataDir = __DIR__ . '/../data/';
 $cookieFile = $dataDir . 'cookie.json';
-$commentsInitialFile = $dataDir . 'comments.initial.json';
+$commentsInitialFile = $dataDir . "comments.initial-{$l}.json";
 $commentsFile = $dataDir . 'comments.json';
 
 $cookie = json_decode(file_get_contents($cookieFile));
 $signedIn = (isset($_COOKIE[$cookie->name]) && $_COOKIE[$cookie->name] === $cookie->value);
 $commentsInitial = json_decode(file_get_contents($commentsInitialFile));
 $comments = (json_decode(file_get_contents($commentsFile)) ?: []);
+
