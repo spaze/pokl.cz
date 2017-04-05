@@ -61,4 +61,4 @@ class Language {
 
 }
 
-$l = new Language('en');
+$l = new Language('cs');
