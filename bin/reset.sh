@@ -1,2 +1,4 @@
 #!/bin/sh
-echo -n "" > /srv/www/pokl.cz/site/data/comments.json && chmod o+w /srv/www/pokl.cz/site/data/comments.json
+cd /srv/www/pokl.cz
+git reset --hard
+echo -n "" > ./site/data/comments.json && chmod o+w ./site/data/comments.json
