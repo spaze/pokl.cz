@@ -10,6 +10,9 @@ $headers = array(
 if ($https) {
 	$headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains; preload';
 }
+if ($_GET['secure'] ?? '' === 'yes') {
+	$headers['Content-Security-Policy'] = "script-src 'self'";
+}
 
 foreach ($headers as $header => $value) {
 	header("{$header}: {$value}");
